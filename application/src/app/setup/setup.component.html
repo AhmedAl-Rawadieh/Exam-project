@@ -1,0 +1,35 @@
+  <!-- setup.component.html -->
+  <div>
+    <h2>Exam Setup</h2>
+    <label for="examName">Exam Name:</label>
+    <input type="text" id="examName" [(ngModel)]="examName" />
+    <!-- Add Question Section -->
+    <div>
+
+      
+      <h3>Add Question</h3>
+      <label for="questionText">Question Text:</label>
+      <input type="text" id="questionText" [(ngModel)]="newQuestion.text" />
+      <label for="questionMark">Mark:</label>
+      <input type="number" id="questionMark" [(ngModel)]="newQuestion.mark" />
+      <button (click)="addQuestion()">Add Question</button>
+    </div>
+      <!-- Display questions in a table -->
+    <table *ngIf="question.length > 0">
+      <thead>
+        <tr>
+          <th>Question Text</th>
+          <th>Mark</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let q of question; let i = index">
+          <td>{{ q.text }}</td>
+          <td>{{ q.mark }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="display: flex; gap: 10px; margin-top: 10px;">
+      <button (click)="saveExam()">Save Exam</button>
+    </div>
+  </div>

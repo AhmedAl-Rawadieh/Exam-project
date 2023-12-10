@@ -1,0 +1,56 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-center row">
+    <div class="col-md-10 col-lg-10">
+      <div class="border">
+        <!-- Quiz Title and Timer -->
+        <div class="question bg-white p-3 border-bottom">
+          <div class="d-flex flex-row justify-content-between align-items-center mcq">
+            <h4>Ahmed Quiz</h4>
+            <div class="d-flex flex-row align-items-center mb-3">
+              <label for="examTitleSelect" class="mr-2">Select Exam:</label>
+              <select id="examTitleSelect" class="form-control" [(ngModel)]="selectedExam" [(ngModel)]="selectedExam" (change)="selectExam(selectedExam)">
+                <option value="" disabled>Select an exam</option>
+                <option *ngFor="let exam of examTitles" [value]="exam.id">{{ exam.title }}</option>
+              </select>
+            </div>
+            
+            
+            <button class="btn btn-danger" (click)="startTimer()" [disabled]="timerStarted">Start Quiz</button>
+          </div>
+        </div>
+        <div class="question bg-white p-3 border-bottom">
+          <div class="d-flex flex-row align-items-center question-title">
+            <h3 class="text-danger">Timer:</h3>
+            <h5 class="mt-1 ml-2">{{ timer }}</h5>
+          </div>
+        </div>
+
+        <!-- Render Questions and Answers Dynamically -->
+      <div *ngFor="let q of questionsWithAnswers; let i = index" class="question bg-white p-3 border-bottom">
+        <div class="d-flex flex-row align-items-center question-title">
+          <h3 class="text-danger">Q{{ i + 1 }}.</h3>
+          <h5 class="mt-1 ml-2">{{ q.text }}</h5> <!-- Display the question text -->
+        </div>
+        <div class="ans ml-2 horizontal-options"  #radioB >
+          <label class="radio" *ngFor="let answer of q.answer" >
+            <!-- Correct the value attribute to bind to the answer string directly -->
+            <input type="radio" [name]="'question' + i" [value]="answer.isSelected" (click)="answer.isSelected = true" [disabled]="!timerStarted" (change)="getSelecteditem(q.answer)">
+            
+            <span>{{ answer.text }}</span> <!-- Display each answer option text -->
+          </label>
+        </div>
+      </div>
+
+      
+
+
+
+        <div class="question bg-white p-3 border-bottom">
+          <div class="d-flex flex-row justify-content-between align-items-center mcq">
+            <button class="btn btn-danger" (click)="submitQuiz()" >Submit Quiz</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

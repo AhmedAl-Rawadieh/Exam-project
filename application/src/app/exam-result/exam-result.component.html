@@ -1,0 +1,27 @@
+<div class="result-container">
+  <h2>Your Exam Result</h2>
+  <p>Your score: {{ finalMark }} /{{ totalMarks }}</p>
+  <p>Percentage: {{ percentage }}%</p>
+
+ <!-- Display User Answers -->
+<div *ngIf="userAnswers.length > 0">
+  <h3>Your Answers:</h3>
+  <ul>
+    <li *ngFor="let userAnswer of userAnswers"  class="left-align user-answers">
+      Question : {{ userAnswer.text }}   Answer :: {{userAnswer.answer.text}}
+    </li>
+  </ul>
+</div>
+
+<!-- Display Correct Answers -->
+<div *ngIf="correctAnswers.length > 0" >
+  <h3>Correct Answers:</h3>
+  <ul>
+    <li *ngFor="let correctAnswer of correctAnswers" class="left-align correct-answers">
+      Question : {{ correctAnswer.text }}   Answer  :: {{correctAnswer.answer.text}}
+    </li>
+  </ul>
+</div>
+
+  <button class="btn" (click)="navigateBack()">Back to login page</button>
+</div>

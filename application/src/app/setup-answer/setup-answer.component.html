@@ -1,0 +1,76 @@
+<!-- setup-answer.component.html -->
+<div>
+    <h2>Exam-Answer Setup</h2>
+    <label for="examTitleSelect" class="mr-2">Select Exam:</label>
+    <select id="examTitleSelect" class="form-control" [(ngModel)]="selectedExam" (change)="selectExam(selectedExam)">
+      <option value="" disabled>Select an exam</option>
+      <option *ngFor="let exam of examTitles" [value]="exam.id">{{ exam.title }}</option>
+    </select>
+  
+    <!-- Select Question Section -->
+    <div class="question bg-white p-3 border-bottom" *ngIf="selectedExam">
+      <label for="questionsDropdown" class="text-danger">Select a Question:</label>
+      <select id="questionsDropdown" class="form-control" [(ngModel)]="selectedQuestion">
+        <option value="" disabled>Select a question</option>
+        <option *ngFor="let q of questionsWithAnswers" [value]="q.id">{{ 'Q' + (questionsWithAnswers.indexOf(q) + 1) + '. ' + q.text }}</option>
+      </select>
+    </div>
+  
+    <!-- Add Answer Section -->
+    <div *ngIf="selectedQuestion">
+      <h3>Add Answer</h3>
+      <label for="answerText">Answer Text:</label>
+      <input type="text" id="answerText" [(ngModel)]="newAnswers.text" />
+      <label for="isCorrect">Is Correct:</label>
+      <input type="checkbox" id="isCorrect" [(ngModel)]="newAnswers.isCorrect" />
+      <button (click)="addAnswer()">Add Answer</button>
+    </div>
+  
+   <!-- Display answers in a table -->
+    <table *ngIf="ans.length > 0">
+      <thead>
+        <tr>
+          <th>Answer Text</th>
+          <th>Is Correct</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let q of ans">
+          <td>{{ q.text }}</td>
+          <td>{{ q.isCorrect ? 'Correct' : 'Incorrect' }}</td>
+
+        </tr>
+      </tbody>
+    </table>
+
+
+
+    <!-- <thead>
+      <tr>
+        <th>Question Text</th>
+        
+        <th>Answers</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let q of questionsWithAnswers">
+        <td>{{ q.text }}</td>
+       
+        <td>
+          <ul *ngIf="q.answers && q.answers.length > 0">
+            <li *ngFor="let answer of q.answers">
+              {{ answer.text }} ({{ answer.isCorrect ? 'Correct' : 'Incorrect' }})
+            </li>
+          </ul>
+          <span *ngIf="!q.answers || q.answers.length === 0">No answers added yet.</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>  -->
+
+      <div style="display: flex; gap: 10px; margin-top: 10px;">
+      <button (click)="saveExam()">Save Answers</button>
+      <button class="btn" (click)="navigateBack()">Back to login page</button>
+    </div>
+  </div>
+  

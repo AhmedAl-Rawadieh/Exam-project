@@ -1,0 +1,39 @@
+/* Additional CSS Styling */
+
+
+.question {
+  margin: 10px 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s;
+}
+
+.question:hover {
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.question-title h5 {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.radio span {
+  font-size: 1rem;
+  color: #444;
+}
+
+.radio input[type="radio"] {
+  margin-right: 5px;
+}
+
+.horizontal-options {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.horizontal-options label {
+  margin-right: 10px;
+}
+
